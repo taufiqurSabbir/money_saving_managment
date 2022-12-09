@@ -32,14 +32,22 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form">
+            <form class="login100-form validate-form" method="POST">
+                @include('error')
+                @if(session('success'))
+                    <span class="alert alert-success">{{session('success')}}</span>
+                @endif
+                @if(session('failed'))
+                    <span class="alert alert-danger">{{session('failed')}}</span>
+                @endif
+                {{csrf_field()}}
 					<span class="login100-form-title p-b-26">
 						Registation Here
 					</span>
 
 
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-                    <input class="input100" type="text" name="email">
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="text" name="name" data-validate = "Valid email is: ab">
                     <span class="focus-input100" data-placeholder="Name"></span>
                 </div>
 
@@ -52,7 +60,7 @@
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-                    <input class="input100" type="password" name="pass">
+                    <input class="input100" type="password" name="password">
                     <span class="focus-input100" data-placeholder="Password"></span>
                 </div>
 

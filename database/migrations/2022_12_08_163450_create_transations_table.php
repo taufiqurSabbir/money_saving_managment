@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('transations', function (Blueprint $table) {
             $table->id();
+
             $table->string('amount');
             $table->string('type');
             $table->foreignId('month_id')->constrained('months');

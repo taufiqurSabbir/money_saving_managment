@@ -32,7 +32,16 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
+            @include('error')
+            @if(session('success'))
+                <span class="alert alert-success">{{session('success')}}</span>
+            @endif
+            @if(session('failed'))
+                <span class="alert alert-danger">{{session('failed')}}</span>
+            @endif
             <form class="login100-form validate-form" method="POST" action="{{route('login.submit')}}">
+
+
                 {{csrf_field()}}
 					<span class="login100-form-title p-b-26">
 						Login Here
@@ -48,7 +57,7 @@
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-                    <input class="input100" type="password" name="pass">
+                    <input class="input100" type="password" name="password">
                     <span class="focus-input100" data-placeholder="Password"></span>
                 </div>
 

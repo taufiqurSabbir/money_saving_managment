@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('location');
+            $table->string('buy_amount');
+            $table->string('return_amount');
+            $table->string('return_type')->comment('Monthly,yearly');
+            $table->date('from_date');
+            $table->date('to_date');
             $table->timestamps();
         });
     }

@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('member_cancles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('title');
+            $table->string('reason');
+            $table->string('status')->comment('approve,rejected,pending');
             $table->timestamps();
         });
     }

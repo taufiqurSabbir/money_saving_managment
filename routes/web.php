@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin;
 use App\Http\Controllers\login_res;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[login_res::class,'login_index'] )->name('login.index');
 Route::post('/',[login_res::class,'login_submit'] )->name('login.submit');
 Route::get('/registation',[login_res::class,'res_index'] )->name('registation.index');
+Route::post('/registation',[login_res::class,'res_submit'] )->name('registation.submit');
+
+
+
+
+Route::get('admin/dashboard', [admin::class,'index'])->name('admin.dashboard');

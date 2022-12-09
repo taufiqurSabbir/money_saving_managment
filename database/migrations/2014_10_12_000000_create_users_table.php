@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role')->default('money_saver')->comment('admin,cashier,money_saver');
-            $table->string('user_status')->default('Rejected')->comment('Rejected,Approved');
+            $table->string('user_status')->default('pending')->comment('pending,Rejected,Approved');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
