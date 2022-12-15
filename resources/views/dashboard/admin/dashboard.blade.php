@@ -2,6 +2,7 @@
 
 @section('user_name',$user_data->name)
 @section('phone',$user_data->phone)
+@section('profile_image',$user_data->profile_picture)
 
 @section('collapsed1','');
 @section('sidebar_name1','Dashboard')

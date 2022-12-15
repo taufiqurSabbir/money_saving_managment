@@ -32,7 +32,7 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form" method="POST" action="{{route('registation.submit')}}">
+            <form class="login100-form validate-form" method="POST" action="{{route('registation.submit')}}" enctype="multipart/form-data">
                 @include('error')
                 @if(session('success'))
                     <span class="alert alert-success">{{session('success')}}</span>

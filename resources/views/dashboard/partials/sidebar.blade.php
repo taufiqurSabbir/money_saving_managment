@@ -4,7 +4,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <div class="profile">
-            <img src="{{asset('dashboard/assets/img/me.jpg')}}" alt="Profile" class="profile_pic">
+            <img src="{{asset('image/profile_picture/')}}/@yield('profile_image')" style="width:150px; height:150px;" alt="Profile" class="profile_pic">
             <br>
             <br>
             <h7>Name: <b>@yield('user_name')</b></h7>

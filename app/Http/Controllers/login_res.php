@@ -52,9 +52,8 @@ class login_res extends Controller
 //            'password' =>'required'
         ]);
 
-        $image_name = rand().'.'.request('profile_image')->extension();
-        dd($image_name);
 
+        $image_name = rand().'.'.$request->profile_image->extension();
         request('profile_image') ->move('image/profile_picture',$image_name);
 
 
