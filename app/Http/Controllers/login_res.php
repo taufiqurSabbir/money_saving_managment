@@ -19,30 +19,41 @@ class login_res extends Controller
 
     public function login_submit(Request $request){
         $request->validate([
-            'email' =>'required|email',
+            'phone' =>'required|numeric|alpha_dash|min:11',
             'password' =>'required'
         ]);
 
        if(Auth::attempt([
-           'email' => $request->email,
+           'phone' => $request->phone,
            'password' => $request->password,
        ])){
-            dd(auth::id());
+           $user = User::find(Auth::id());
+           $role = $user['role'];
+
+           if($role =='admin'){
+              return redirect(route('admin.dashboard'));
+           }else if($role == 'money_saver'){
+                return redirect(route('money_saver.dashboard'));
+           }else if($role == 'cashier'){
+               return redirect(route('cashier.dashboard'));
+           }
+
        }
     }
 
 
 
     public function res_submit(Request $request){
+
         $request->validate([
             'name' =>'required',
-            'email' =>'required|email|unique:users',
+            'phone' =>'required|numeric|alpha_dash|unique:users|min:11',
             'password' =>'required'
         ]);
 
         User::create([
             'name'=>$request->name,
-            'email'=>$request->email,
+            'phone'=>$request->phone,
             'password'=>bcrypt($request->password),
         ]);
 

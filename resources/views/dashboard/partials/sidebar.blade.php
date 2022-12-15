@@ -7,8 +7,8 @@
             <img src="{{asset('dashboard/assets/img/me.jpg')}}" alt="Profile" class="profile_pic">
             <br>
             <br>
-            <h7>Name: <b>Taufiqur Sabbir</b></h7>
-            <h7>Phone:<b>01792945445</b></h7>
+            <h7>Name: <b>@yield('user_name')</b></h7>
+            <h7>Phone:<b>@yield('phone')</b></h7>
             <br>
             <br>
         </div>

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\admin;
+use App\Http\Controllers\cashier;
 use App\Http\Controllers\login_res;
+use App\Http\Controllers\money_saver;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +26,8 @@ Route::post('/registation',[login_res::class,'res_submit'] )->name('registation.
 
 
 Route::get('admin/dashboard', [admin::class,'index'])->name('admin.dashboard');
+
+
+Route::get('money-saver/dashboard', [money_saver::class, 'index'])->name('money_saver.dashboard');
+
+Route::get('cashier/dashboard', [cashier::class,'index'])->name('cashier.dashboard');

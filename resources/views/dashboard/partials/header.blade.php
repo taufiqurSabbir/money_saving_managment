@@ -72,12 +72,12 @@
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="{{asset('dashboard/assets/img/me.jpg')}}" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">Taufiqur Sabbir</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2">@yield('user_name')</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Taufiqur Sabbir</h6>
+                        <h6>@yield('user_name')</h6>
 
                     </li>
                     <li>
