@@ -64,11 +64,19 @@
                     <span class="focus-input100" data-placeholder="Password"></span>
                 </div>
 
+
+
+                    <span style="color:#9b9999">Upload Profile Picture</span>
+                    <br>
+                    <input type="file" name="profile_image">
+
+
+
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
                         <button class="login100-form-btn">
-                            Login
+                            Registation
                         </button>
                     </div>
                 </div>

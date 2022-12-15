@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone')->unique();
             $table->string('password');
+            $table->string('profile_picture');
             $table->string('role')->default('money_saver')->comment('admin,cashier,money_saver');
             $table->string('user_status')->default('pending')->comment('pending,Rejected,Approved');
             $table->timestamp('email_verified_at')->nullable();
