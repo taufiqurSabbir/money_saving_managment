@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Months;
 use App\Models\User;
+use App\Models\Years;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,11 +50,13 @@ class admin extends Controller
         return back()->with('success',$user->name.' rejected successfully');
     }
 
-    public function change_role(){
+    public function transaction(){
         $user_data = User::find(Auth::id());
         $all_user = User::all();
+        $month = Months::all();
+        $year = Years::all();
 
-        return view('dashboard.admin.change_role',compact('user_data','all_user'));
+        return view('dashboard.admin.transaction',compact('user_data','all_user','month','year'));
     }
 
     public function change_role_submit(Request $request){
@@ -64,6 +68,8 @@ class admin extends Controller
 
         return back()->with('success',' User Role Updated');
     }
+
+
 
 
 }

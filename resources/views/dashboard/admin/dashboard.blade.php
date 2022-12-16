@@ -17,49 +17,39 @@
 @section('icon2','bi bi-person-check')
 
 @section('collapsed3','collapsed');
-@section('sidebar_name3','Change user Role')
+@section('sidebar_name3','Add Years')
 @section('link3','Dashboard')
-@section('icon3','bi bi-person-check')
+@section('icon3','bi bi-calendar-check')
 
 @section('collapsed4','collapsed');
-@section('sidebar_name4','Add Years')
+@section('sidebar_name4','Transaction')
 @section('link4','Dashboard')
-@section('icon4','bi bi-calendar-check')
+@section('icon4','bi bi-cash-coin')
 
 @section('collapsed5','collapsed');
-@section('sidebar_name5','Transaction')
+@section('sidebar_name5','Notice')
 @section('link5','Dashboard')
-@section('icon5','bi bi-cash-coin')
+@section('icon5','bi bi-bell')
 
 @section('collapsed6','collapsed');
-@section('sidebar_name6','Notice')
+@section('sidebar_name6','Asset')
 @section('link6','Dashboard')
-@section('icon6','bi bi-bell')
+@section('icon6','bi bi-plus-circle')
 
 @section('collapsed7','collapsed');
-@section('sidebar_name7','Asset')
+@section('sidebar_name7','Expense')
 @section('link7','Dashboard')
-@section('icon7','bi bi-plus-circle')
+@section('icon7','bi bi-dash-circle')
 
 @section('collapsed8','collapsed');
-@section('sidebar_name8','Expense')
+@section('sidebar_name8','Member Cancel Request')
 @section('link8','Dashboard')
-@section('icon8','bi bi-dash-circle')
+@section('icon8','bi bi-person-dash')
 
 @section('collapsed9','collapsed');
-@section('sidebar_name9','Member Cancel Request')
+@section('sidebar_name9','Logout')
 @section('link9','Dashboard')
-@section('icon9','bi bi-person-dash')
-
-@section('collapsed10','collapsed');
-@section('sidebar_name10','Advance Paid')
-@section('link10','Dashboard')
-@section('icon10','bi bi-coin')
-
-@section('collapsed11','collapsed');
-@section('sidebar_name11','Logout')
-@section('link11','Dashboard')
-@section('icon11','bi bi-box-arrow-left')
+@section('icon9','bi bi-box-arrow-left')
 
 
 

@@ -32,12 +32,14 @@ class login_res extends Controller
 
            if($role =='admin'){
               return redirect(route('admin.dashboard'));
-           }else if($role == 'money_saver'){
+           }else if($role =='money_saver'){
                 return redirect(route('money_saver.dashboard'));
-           }else if($role == 'cashier'){
+           }else if($role =='cashier'){
                return redirect(route('cashier.dashboard'));
            }
 
+       }else{
+           return back()->with('failed','Not matched');
        }
     }
 
@@ -65,5 +67,10 @@ class login_res extends Controller
             ]);
 
             return redirect(route('login.index'))->with('success','Successful, Login here');
+    }
+
+    public function logout(){
+        auth::logout();
+        return redirect(route('login.index'));
     }
 }

@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class profits extends Model
 {
+    protected $guarded=[];
     use HasFactory;
 }
