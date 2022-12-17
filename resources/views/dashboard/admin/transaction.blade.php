@@ -191,8 +191,11 @@
 
 
 
+                                    @foreach($current_month as $transaction)
+                                        @php
+                                       $users = \App\Models\User::where('id',$transaction->user_id)->get()
+                                        @endphp
 
-                                    @foreach($all_user as $users)
                                         <tr>
                                             <th><span>
                                                 <img src="{{asset('image/profile_picture/'. $users->profile_picture)}}" style="width:50px; height:50px; border-radius:50%" alt="">

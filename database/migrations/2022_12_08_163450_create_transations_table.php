@@ -20,8 +20,10 @@ return new class extends Migration
             $table->string('type');
             $table->foreignId('month_id')->constrained('months');
             $table->foreignId('year_id')->constrained('years');
-            $table->foreignId('Collect_by')->constrained('users');
+            $table->unsignedBigInteger('collect_by');
+            $table->foreign('collect_by')->references('id')->on('users');
             $table->date('paid_date');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

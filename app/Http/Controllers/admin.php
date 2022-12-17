@@ -50,14 +50,7 @@ class admin extends Controller
         return back()->with('success',$user->name.' rejected successfully');
     }
 
-    public function transaction(){
-        $user_data = User::find(Auth::id());
-        $all_user = User::all();
-        $month = Months::all();
-        $year = Years::all();
 
-        return view('dashboard.admin.transaction',compact('user_data','all_user','month','year'));
-    }
 
     public function change_role_submit(Request $request){
 

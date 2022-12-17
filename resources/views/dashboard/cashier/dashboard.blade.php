@@ -1,61 +1,57 @@
 @extends('dashboard.layouts.usermaster')
 
+@section('user_name',$user_data->name)
+@section('phone',$user_data->phone)
+@section('profile_image',$user_data->profile_picture)
+
 @section('collapsed1','');
 @section('sidebar_name1','Dashboard')
-@section('link1','Dashboard')
+@section('link1',route('admin.dashboard'))
 @section('icon1','bi bi-grid')
 
 @section('page_title','Dashboard')
 
 @section('collapsed2','collapsed');
-@section('sidebar_name2','Pending Users')
-@section('link2','Dashboard')
-@section('icon2','bi bi-person')
+@section('sidebar_name2','All Users')
+@section('link2',route('all.user'))
+@section('icon2','bi bi-person-check')
 
 @section('collapsed3','collapsed');
-@section('sidebar_name3','All Users')
+@section('sidebar_name3','Add Years')
 @section('link3','Dashboard')
-@section('icon3','bi bi-person-check')
+@section('icon3','bi bi-calendar-check')
 
 @section('collapsed4','collapsed');
-@section('sidebar_name4','Add Years')
+@section('sidebar_name4','Transaction')
 @section('link4','Dashboard')
-@section('icon4','bi bi-calendar-check')
+@section('icon4','bi bi-cash-coin')
 
 @section('collapsed5','collapsed');
-@section('sidebar_name5','Transaction')
+@section('sidebar_name5','Notice')
 @section('link5','Dashboard')
-@section('icon5','bi bi-cash-coin')
+@section('icon5','bi bi-bell')
 
 @section('collapsed6','collapsed');
-@section('sidebar_name6','Notice')
+@section('sidebar_name6','Asset')
 @section('link6','Dashboard')
-@section('icon6','bi bi-bell')
+@section('icon6','bi bi-plus-circle')
 
 @section('collapsed7','collapsed');
-@section('sidebar_name7','Asset')
+@section('sidebar_name7','Expense')
 @section('link7','Dashboard')
-@section('icon7','bi bi-plus-circle')
+@section('icon7','bi bi-dash-circle')
 
 @section('collapsed8','collapsed');
-@section('sidebar_name8','Expense')
+@section('sidebar_name8','Member Cancel Request')
 @section('link8','Dashboard')
-@section('icon8','bi bi-dash-circle')
+@section('icon8','bi bi-person-dash')
 
 @section('collapsed9','collapsed');
-@section('sidebar_name9','Member Cancel Request')
+@section('sidebar_name9','Logout')
 @section('link9','Dashboard')
-@section('icon9','bi bi-person-dash')
+@section('icon9','bi bi-box-arrow-left')
 
-@section('collapsed10','collapsed');
-@section('sidebar_name10','Advance Paid')
-@section('link10','Dashboard')
-@section('icon10','bi bi-coin')
 
-@section('collapsed11','collapsed');
-@section('sidebar_name11','Logout')
-@section('link11','Dashboard')
-@section('icon11','bi bi-box-arrow-left')
 
 @section('content')
     <div class="row">
@@ -206,82 +202,153 @@
 
                 </div><!-- End Customers Card -->
 
-                <!-- Reports -->
                 <div class="col-12">
                     <div class="card">
 
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div>
-
                         <div class="card-body">
-                            <h5 class="card-title">Reports <span>/Today</span></h5>
+                            <h5 class="card-title">Total Collection</h5>
 
                             <!-- Line Chart -->
-                            <div id="reportsChart"></div>
+                            <div id="save_report"></div>
 
                             <script>
                                 document.addEventListener("DOMContentLoaded", () => {
-                                    new ApexCharts(document.querySelector("#reportsChart"), {
+                                    new ApexCharts(document.querySelector("#save_report"), {
                                         series: [{
-                                            name: 'Sales',
-                                            data: [31, 40, 28, 51, 42, 82, 56],
-                                        }, {
-                                            name: 'Revenue',
-                                            data: [11, 32, 45, 32, 34, 52, 41]
-                                        }, {
-                                            name: 'Customers',
-                                            data: [15, 11, 32, 18, 9, 24, 11]
+                                            name: 'Inflation',
+                                            data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
                                         }],
                                         chart: {
                                             height: 350,
-                                            type: 'area',
-                                            toolbar: {
-                                                show: false
-                                            },
+                                            type: 'bar',
                                         },
-                                        markers: {
-                                            size: 4
-                                        },
-                                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                        fill: {
-                                            type: "gradient",
-                                            gradient: {
-                                                shadeIntensity: 1,
-                                                opacityFrom: 0.3,
-                                                opacityTo: 0.4,
-                                                stops: [0, 90, 100]
+                                        plotOptions: {
+                                            bar: {
+                                                borderRadius: 10,
+                                                dataLabels: {
+                                                    position: 'top', // top, center, bottom
+                                                },
                                             }
                                         },
+
                                         dataLabels: {
-                                            enabled: false
-                                        },
-                                        stroke: {
-                                            curve: 'smooth',
-                                            width: 2
+                                            enabled: true,
+                                            formatter: function (val) {
+                                                return val + "%";
+                                            },
+                                            offsetY: -20,
+                                            style: {
+                                                fontSize: '12px',
+                                                colors: ["#304758"]
+                                            }
                                         },
                                         xaxis: {
-                                            type: 'datetime',
-                                            categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                                        },
-                                        tooltip: {
-                                            x: {
-                                                format: 'dd/MM/yy HH:mm'
+                                            categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                            position: 'top',
+                                            axisBorder: {
+                                                show: false
                                             },
+                                            axisTicks: {
+                                                show: false
+                                            },
+                                            crosshairs: {
+                                                fill: {
+                                                    type: 'gradient',
+                                                    gradient: {
+                                                        colorFrom: '#D8E3F0',
+                                                        colorTo: '#BED1E6',
+                                                        stops: [0, 100],
+                                                        opacityFrom: 0.4,
+                                                        opacityTo: 0.5,
+                                                    }
+                                                }
+                                            },
+                                            tooltip: {
+                                                enabled: true,
+                                            }
+                                        },
+                                        yaxis: {
+                                            axisBorder: {
+                                                show: false
+                                            },
+                                            axisTicks: {
+                                                show: false,
+                                            },
+                                            labels: {
+                                                show: false,
+                                                formatter: function (val) {
+                                                    return val + "%";
+                                                }
+                                            }
+
+                                        },
+                                        title: {
+                                            text: 'Monthly Monthly Collection',
+                                            floating: true,
+                                            offsetY: 330,
+                                            align: 'center',
+                                            style: {
+                                                color: '#444'
+                                            }
                                         }
                                     }).render();
                                 });
                             </script>
-                            <!-- End Line Chart -->
+
+
+                        </div>
+
+                    </div>
+                </div><!-- End Reports -->
+
+                <!-- Reports -->
+                <div class="col-12">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Last Transaction</h5>
+
+                            <!-- Line Chart -->
+                            <div id="reportsChart">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">phone</th>
+                                        <th scope="col">amount</th>
+                                        <th scope="col">Month</th>
+                                        <th scope="col">Purpose</th>
+                                        <th scope="col">status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>
+                                            <span class="badge bg-success">Approved</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
 
                         </div>
 
@@ -290,77 +357,57 @@
 
                 <!-- Recent Sales -->
                 <div class="col-12">
-                    <div class="card recent-sales overflow-auto">
-
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div>
+                    <div class="card">
 
                         <div class="card-body">
-                            <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                            <h5 class="card-title">Amount Due</h5>
 
-                            <table class="table table-borderless datatable">
-                                <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Customer</th>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Status</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row"><a href="#">#2457</a></th>
-                                    <td>Brandon Jacob</td>
-                                    <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                                    <td>$64</td>
-                                    <td><span class="badge bg-success">Approved</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#">#2147</a></th>
-                                    <td>Bridie Kessler</td>
-                                    <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                                    <td>$47</td>
-                                    <td><span class="badge bg-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#">#2049</a></th>
-                                    <td>Ashleigh Langosh</td>
-                                    <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                                    <td>$147</td>
-                                    <td><span class="badge bg-success">Approved</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#">#2644</a></th>
-                                    <td>Angus Grady</td>
-                                    <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                                    <td>$67</td>
-                                    <td><span class="badge bg-danger">Rejected</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#">#2644</a></th>
-                                    <td>Raheem Lehner</td>
-                                    <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                                    <td>$165</td>
-                                    <td><span class="badge bg-success">Approved</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <!-- Line Chart -->
+                            <div id="reportsChart">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">phone</th>
+                                        <th scope="col">amount</th>
+                                        <th scope="col">Month</th>
+                                        <th scope="col">Purpose</th>
+                                        <th scope="col">status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>@mdo</td>
+                                        <td>
+                                            <span class="badge bg-success">Approved</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
 
                         </div>
 
                     </div>
-                </div><!-- End Recent Sales -->
+                </div><!-- End Reports --><!-- End Recent Sales -->
 
                 <!-- Top Selling -->
                 <div class="col-12">
@@ -488,54 +535,49 @@
                     <h5 class="card-title">Notic <span>| Today</span></h5>
 
                     <div class="activity">
+                        <!-- Pie Chart -->
+                        <div id="pieChart" style="min-height: 500px;" class="echart"></div>
 
-                        <div class="activity-item d-flex">
-                            <div class="activite-label">32 min</div>
-                            <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                            <div class="activity-content">
-                                Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
-                            </div>
-                        </div><!-- End activity item-->
+                        <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                                echarts.init(document.querySelector("#pieChart")).setOption({
+                                    title: {
+                                        text: 'Amount Due And Advance Cash',
+                                        subtext: '2022',
+                                        left: 'center'
+                                    },
+                                    tooltip: {
+                                        trigger: 'item'
+                                    },
+                                    legend: {
+                                        orient: 'vertical',
+                                        left: 'left'
+                                    },
+                                    series: [{
+                                        name: 'Access From',
+                                        type: 'pie',
+                                        radius: '50%',
+                                        data: [{
+                                            value: 735,
+                                            name: 'Direct'
+                                        },
+                                            {
+                                                value: 484,
+                                                name: 'Union Ads'
+                                            },
+                                            {
+                                                value: 484,
+                                                name: 'Union f'
+                                            },
 
-                        <div class="activity-item d-flex">
-                            <div class="activite-label">56 min</div>
-                            <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                            <div class="activity-content">
-                                Voluptatem blanditiis blanditiis eveniet
-                            </div>
-                        </div><!-- End activity item-->
+                                        ],
 
-                        <div class="activity-item d-flex">
-                            <div class="activite-label">2 hrs</div>
-                            <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                            <div class="activity-content">
-                                Voluptates corrupti molestias voluptatem
-                            </div>
-                        </div><!-- End activity item-->
+                                    }]
+                                });
+                            });
+                        </script>
+                        <!-- End Pie Chart -->
 
-                        <div class="activity-item d-flex">
-                            <div class="activite-label">1 day</div>
-                            <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                            <div class="activity-content">
-                                Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
-                            </div>
-                        </div><!-- End activity item-->
-
-                        <div class="activity-item d-flex">
-                            <div class="activite-label">2 days</div>
-                            <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                            <div class="activity-content">
-                                Est sit eum reiciendis exercitationem
-                            </div>
-                        </div><!-- End activity item-->
-
-                        <div class="activity-item d-flex">
-                            <div class="activite-label">4 weeks</div>
-                            <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                            <div class="activity-content">
-                                Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                            </div>
-                        </div><!-- End activity item-->
 
                     </div>
 

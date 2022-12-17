@@ -33,11 +33,10 @@ Route::get('user/pending/{id}', [admin::class,'pending_user'])->name('pending.us
 Route::get('user/reject/{id}', [admin::class,'reject_user'])->name('reject.user');
 Route::get('change/role', [admin::class,'change_role'])->name('change.role.index');
 Route::post('change/role', [admin::class,'change_role_submit'])->name('change.role');
+Route::get('all/user',[admin::class,'all_user'])->name('all.user');
 Route::post('add/amount', [TransationController::class,'add_amount'])->name('admin.add.amount');
 Route::post('add/year', [TransationController::class,'addyear'])->name('admin.add.year');
-
-Route::get('all/user',[admin::class,'all_user'])->name('all.user');
-Route::get('/transaction',[admin::class,'transaction'])->name('transaction');
+Route::get('/transaction',[TransationController::class,'transaction'])->name('transaction');
 
 
 Route::get('money-saver/dashboard', [money_saver::class, 'index'])->name('money_saver.dashboard');
