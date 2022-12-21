@@ -1,10 +1,12 @@
 @extends('dashboard.layouts.usermaster')
 
-@section('page_title','All Users')
+@section('page_title','All Transaction')
 
 @section('user_name',$user_data->name)
 @section('phone',$user_data->phone)
 @section('profile_image',$user_data->profile_picture)
+
+
 
 @section('collapsed1','collapsed');
 @section('sidebar_name1','Dashboard')
@@ -71,7 +73,8 @@
                     <div class="card">
 
                         <div class="card-body">
-                            <h5 class="card-title">All Users</h5>
+                            <h5 class="card-title">All Transaction</h5>
+
                             @if($user_data->role =='admin' or $user_data->role == 'cashier')
                                 <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -174,14 +177,73 @@
                                     </div>
                         @endif
                         <!-- Line Chart -->
+
+                            <form action="{{route('s.transaction')}}" class="input-group">
+                                {{csrf_field()}}
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <select class="form-select" aria-label="Default select example" name="s_month">
+                                            <option selected>Select Month</option>
+                                            @foreach($month as $months)
+                                                <option value="{{$months->id}}">
+                                                    {{$months->months}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm">
+                                        <select class="form-select" aria-label="Default select example" name="s_year">
+                                            <option selected>Select Year</option>
+                                            @foreach($year as $years)
+                                                <option value="{{$years->id}}">
+                                                    {{$years->year}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm">
+                                        <select class="form-select" aria-label="Default select example" name="s_status">
+                                            <option selected>Select Status</option>
+                                            <option value="paid">Paid</option>
+                                            <option value="due">Due</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm">
+                                        <select class="form-select" aria-label="Default select example" name="s_type">
+                                            <option selected>Select payment type</option>
+                                            <option value="monthly_payment">Monthly Payment</option>
+                                            <option value="advance_payment">Advance Payment</option>
+                                            <option value="due_payment">Due Payment</option>
+
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm">
+                                        <select class="form-select" aria-label="Default select example" name="s_user">
+                                            <option selected>Select User</option>
+                                            @foreach($all_user as $users)
+                                                <option value="{{$users->id}}">
+                                                    {{$users->name}}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <input class="btn btn-success" type="submit" value="Search">
+                            </form>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
                                         <th scope="col">Name</th>
                                         <th scope="col">phone</th>
-                                        <th scope="col">Role</th>
-                                        <th scope="col">status</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Payment For</th>
+                                        <th scope="col">Month</th>
+                                        <th scope="col">Year</th>
+                                        <th scope="col">Status</th>
                                         @if($user_data->role =='admin' or $user_data->role == 'cashier')
                                             <th scope="col">Action</th>
                                         @endif
@@ -192,8 +254,10 @@
 
 
                                     @foreach($current_month as $transaction)
+
                                         @php
-                                       $users = \App\Models\User::where('id',$transaction->user_id)->get()
+                                       $users = \App\Models\User::where('id',$transaction->user_id)->first()
+
                                         @endphp
 
                                         <tr>
@@ -207,32 +271,36 @@
 
                                                 {{$users->phone}}
                                             </td>
-                                            <td>{{$users->role}}</td>
-                                            <td>
-                                                @php
-                                                    if ( $users->user_status =='pending')
-                                                            echo(' <span class="badge bg-warning">Pending</span>');
-                                                    else if($users->user_status =='Approved')
-                                                         echo(' <span class="badge bg-success">Approved</span>');
-                                                    else if($users->user_status =='Rejected')
-                                                         echo(' <span class="badge bg-danger">Rejected</span>');
+                                            @php
+                                                $Month= \App\Models\Months::where('id',$transaction->month_id)->first();
+                                                $year= \App\Models\Years::where('id',$transaction->year_id)->first();
+                                            @endphp
 
-                                                @endphp
+
+                                            <td>{{$transaction->amount}}</td>
+                                            <td>{{$transaction->type}}</td>
+                                            <td>{{$Month->months}}</td>
+                                            <td>{{$year->year}}</td>
+                                            <td>
+
+                                                    @if( $transaction->status =='Due')
+                                                             <span class="badge bg-danger">Due</span>
+                                                    @elseif($transaction->status =='paid')
+                                                        <span class="badge bg-success">Paid</span>
+                                                @endif
+
+
                                             </td>
                                             @if($user_data->role =='admin' or $user_data->role == 'cashier')
 
                                                 <td>
                                           <span>
 
-                                                  @if ( $users->user_status =='pending')
-                                                  <a class="btn btn-success" href="{{route('approve.user',$users->id)}}">Approve</a>
-                                                  <a class="btn btn-danger" href="{{route('reject.user',$users->id)}}">Reject</a>
-                                              @elseif ($users->user_status =='Approved')
-                                                  <a class="btn btn-warning" href="{{route('pending.user',$users->id)}}">Pending</a>
-                                                  <a class="btn btn-danger" href="{{route('reject.user',$users->id)}}">Reject</a>
-                                              @elseif ($users->user_status =='Rejected')
-                                                  <a class="btn btn-success" href="{{route('approve.user',$users->id)}}">Approve</a>
-                                                  <a class="btn btn-warning" href="{{route('pending.user',$users->id)}}">Pending</a>
+                                                <a class="btn btn-danger" href="{{route('delete_tran',$transaction->id)}}">Delete</a>
+                                                  @if ( $transaction->status =='paid')
+                                                  <a class="btn btn-danger" href="{{route('due',$transaction->id)}}">Due</a>
+                                              @elseif ($transaction->status =='Due')
+                                                  <a class="btn btn-success" href="{{route('paid',$transaction->id)}}">Paid</a>
 
                                               @endif
                                               {{--                                              <a class="btn btn-success" href="">Approve</a>--}}

@@ -30,6 +30,12 @@ Route::post('/registation',[login_res::class,'res_submit'] )->name('registation.
 Route::get('admin/dashboard', [admin::class,'index'])->name('admin.dashboard');
 Route::get('user/approve/{id}', [admin::class,'approve_user'])->name('approve.user');
 Route::get('user/pending/{id}', [admin::class,'pending_user'])->name('pending.user');
+
+Route::get('delete/amount/{id}', [TransationController::class,'delete_tran'])->name('delete_tran');
+
+Route::get('money/paid/{id}', [TransationController::class,'paid'])->name('paid');
+Route::get('money/due/{id}', [TransationController::class,'due'])->name('due');
+
 Route::get('user/reject/{id}', [admin::class,'reject_user'])->name('reject.user');
 Route::get('change/role', [admin::class,'change_role'])->name('change.role.index');
 Route::post('change/role', [admin::class,'change_role_submit'])->name('change.role');
@@ -37,8 +43,14 @@ Route::get('all/user',[admin::class,'all_user'])->name('all.user');
 Route::post('add/amount', [TransationController::class,'add_amount'])->name('admin.add.amount');
 Route::post('add/year', [TransationController::class,'addyear'])->name('admin.add.year');
 Route::get('/transaction',[TransationController::class,'transaction'])->name('transaction');
+Route::post('/transaction',[TransationController::class,'transaction'])->name('s.transaction');
 
 
 Route::get('money-saver/dashboard', [money_saver::class, 'index'])->name('money_saver.dashboard');
 
 Route::get('cashier/dashboard', [cashier::class,'index'])->name('cashier.dashboard');
+
+
+
+
+

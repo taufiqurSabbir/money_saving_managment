@@ -2,19 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assets;
+use App\Models\LoanRequest;
 use App\Models\Months;
+use App\Models\transation;
 use App\Models\User;
 use App\Models\Years;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class admin extends Controller
 {
    public function index()
    {
-       $user_data = User::find(Auth::id());
+      $paid=  transation::where([
+          ['status','paid']
+      ])->sum('amount');
 
-       return view('dashboard.admin.dashboard',compact('user_data'));
+       $due=  transation::where([
+           ['status','Due']
+       ])->sum('amount');
+
+       $total_user = User::where('user_status','Approved')->count();
+
+       $user_data = User::find(Auth::id());
+       $asset = Assets::all()->count();
+       $loan_req = LoanRequest::all()->count();
+
+       return view('dashboard.admin.dashboard',compact('user_data','paid','due','total_user','asset','loan_req'));
    }
 
    public function all_user(){

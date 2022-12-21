@@ -73,7 +73,7 @@
                                     <i class="bi bi-cash-coin"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>9000৳</h6>
+                                    <h6>{{$paid}}৳</h6>
 
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                     <i class="bi bi-person"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>10</h6>
+                                    <h6>{{$total_user}}</h6>
 
 
                                 </div>
@@ -118,7 +118,7 @@
                                     <i class="bi bi-question-octagon"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>10</h6>
+                                    <h6>{{$due}}৳</h6>
 
 
                                 </div>
@@ -142,7 +142,7 @@
                                     <i class="bi bi-shield-fill-plus"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>3</h6>
+                                    <h6>{{$asset}}</h6>
 
 
                                 </div>
@@ -191,7 +191,7 @@
                                     <i class="bi bi-bank"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>3</h6>
+                                    <h6>{{$loan_req}}</h6>
 
 
                                 </div>

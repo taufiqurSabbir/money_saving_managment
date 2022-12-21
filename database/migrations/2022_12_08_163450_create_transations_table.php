@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('collect_by')->references('id')->on('users');
             $table->date('paid_date');
             $table->foreignId('user_id')->constrained();
+            $table->string('status')->comment('paid,Due')->default('Due');
             $table->timestamps();
         });
     }

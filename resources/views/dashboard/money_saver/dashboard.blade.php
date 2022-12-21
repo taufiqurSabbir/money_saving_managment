@@ -75,7 +75,7 @@
             <div class="row">
 
                 <!-- Sales Card -->
-                <div class="col-xxl-4 col-md-6">
+                 <div class="col-xxl-4 col-md-6">
                     <div class="card info-card sales-card">
 
 
@@ -87,7 +87,7 @@
                                     <i class="bi bi-cash-coin"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>9000৳</h6>
+                                    <h6>{{$total_collect}}৳</h6>
 
                                 </div>
                             </div>
@@ -102,14 +102,16 @@
 
 
                         <div class="card-body">
-                            <h5 class="card-title">Total User</h5>
+                            <h5 class="card-title">Your Total Saving</h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-person"></i>
+                                    <i class="bi bi-cash-stack"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>10</h6>
+
+                                    <h6>{{$user_paid}}৳</h6>
+                                    <span><p>Adjest amount <b style="color:#b01602">{{$adjest_amount}}৳</b></p></span>
 
 
                                 </div>
@@ -125,14 +127,14 @@
 
 
                         <div class="card-body">
-                            <h5 class="card-title">Amount Due</h5>
+                            <h5 class="card-title">Your Amount Due</h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-question-octagon"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>10</h6>
+                                    <h6>{{$user_due}}৳</h6>
 
 
                                 </div>
@@ -149,14 +151,14 @@
 
 
                         <div class="card-body">
-                            <h5 class="card-title">Asset</h5>
+                            <h5 class="card-title">Total Member</h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-shield-fill-plus"></i>
+                                    <i class="bi bi-person"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>3</h6>
+                                    <h6>{{$total_user}}</h6>
 
 
                                 </div>
@@ -180,7 +182,7 @@
                                     <i class="bi bi-patch-minus-fill"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>3</h6>
+                                    <h6>3৳</h6>
 
 
                                 </div>
@@ -198,14 +200,14 @@
 
 
                         <div class="card-body">
-                            <h5 class="card-title">Loan Request</h5>
+                            <h5 class="card-title">Total Due</h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-bank"></i>
+                                    <i class="bi bi-question-diamond"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>3</h6>
+                                    <h6>{{$total_due}}৳</h6>
 
 
                                 </div>
