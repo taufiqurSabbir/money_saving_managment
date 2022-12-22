@@ -62,13 +62,6 @@
         <!-- Left side columns -->
         <div class="col-lg-12">
             <div class="row">
-                @include('error')
-                @if(session('success'))
-                    <span class="alert alert-success">{{session('success')}}</span>
-                @endif
-                @if(session('failed'))
-                    <span class="alert alert-danger">{{session('failed')}}</span>
-                @endif
 
                 <div class="col-12">
                     <div class="card">
@@ -125,52 +118,43 @@
                             <span>Your Due Balance: <b style="color:#bf0606">{{  $due_amount}}</b> </span> <br>
                             <span>So you can apply loan less than <b style="color:#04c63a">{{ $current_balance}}</b></span>
                             </div>
-
-
-
                             <br>
+                            @include('error')
+                            @if(session('success'))
+                                <span class="alert alert-success">{{session('success')}}</span>
+                            @endif
+                            @if(session('failed'))
+                                <span class="alert alert-danger">{{session('failed')}}</span>
+                        @endif
 
-
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                              <b> Apply For Loan</b>
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <form action="" method="POST">
-                                        {{csrf_field()}}
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                                <label class="form-label">Amount</label>
-                                                <input type="text" class="form-control" name="amount">
-
-                                                <label class="form-label">Reason</label>
-                                                <input type="text" class="form-control" name="reason">
-
-                                                <label class="form-label">Need Date</label>
-                                                <input type="date" class="form-control" name="need_date">
-
-                                                <label class="form-label">Paid Date</label>
-                                                <input type="date" class="form-control" name="pay_date">
-
-                                        </div>
-                                        <div class="modal-footer">
-
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <input type="submit"  class="btn btn-outline-success btn-lg" value="Save">
-
-                                        </div>
+                            <form action="{{route('submit.loan')}}" method="post" class="input-group">
+                                {{csrf_field()}}
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <span>Enter amount</span>
+                                        <input type="number" name="amount" class="form-control" placeholder="Enter amount here">
                                     </div>
-                                    </form>
+                                    <div class="col-sm">
+                                        <span>Enter Reason</span>
+                                        <input type="text" name="reason" class="form-control" placeholder="Enter Reason">
+                                    </div>
+                                    <div class="col-sm">
+                                        <span>Need Date</span>
+                                        <input type="date" name="need_date" class="form-control">
+                                    </div>
+                                    <div class="col-sm">
+                                        <span>Will pay date</span>
+                                        <input type="date" name="pay_date" class="form-control">
+                                    </div>
+
+                                    <div class="col-sm">
+                                        <br>
+                                        <input class="btn btn-success form-control"  type="submit" value="Submit Request">
+                                    </div>
+
                                 </div>
-                            </div>
+
+                            </form>
 
 
 

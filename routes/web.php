@@ -53,6 +53,8 @@ Route::get('cashier/dashboard', [cashier::class,'index'])->name('cashier.dashboa
 
 Route::get('loan', [LoanRequestController::class,'index'])->name('loan');
 
+Route::post('loan', [LoanRequestController::class,'submit_loan'])->name('submit.loan');
+
 
 
 
