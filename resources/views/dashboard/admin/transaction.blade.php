@@ -177,13 +177,15 @@
                                     </div>
                         @endif
                         <!-- Line Chart -->
+                            <br>
+                            <br>
 
                             <form action="{{route('s.transaction')}}" class="input-group">
                                 {{csrf_field()}}
                                 <div class="row">
                                     <div class="col-sm">
                                         <select class="form-select" aria-label="Default select example" name="s_month">
-                                            <option selected>Select Month</option>
+                                            <option disabled  selected>Select Month</option>
                                             @foreach($month as $months)
                                                 <option value="{{$months->id}}">
                                                     {{$months->months}}
@@ -193,7 +195,7 @@
                                     </div>
                                     <div class="col-sm">
                                         <select class="form-select" aria-label="Default select example" name="s_year">
-                                            <option selected>Select Year</option>
+                                            <option disabled selected>Select Year</option>
                                             @foreach($year as $years)
                                                 <option value="{{$years->id}}">
                                                     {{$years->year}}
@@ -203,14 +205,14 @@
                                     </div>
                                     <div class="col-sm">
                                         <select class="form-select" aria-label="Default select example" name="s_status">
-                                            <option selected>Select Status</option>
+                                            <option disabled selected>Select Status</option>
                                             <option value="paid">Paid</option>
                                             <option value="due">Due</option>
                                         </select>
                                     </div>
                                     <div class="col-sm">
                                         <select class="form-select" aria-label="Default select example" name="s_type">
-                                            <option selected>Select payment type</option>
+                                            <option disabled selected>Select payment type</option>
                                             <option value="monthly_payment">Monthly Payment</option>
                                             <option value="advance_payment">Advance Payment</option>
                                             <option value="due_payment">Due Payment</option>
@@ -220,7 +222,7 @@
 
                                     <div class="col-sm">
                                         <select class="form-select" aria-label="Default select example" name="s_user">
-                                            <option selected>Select User</option>
+                                            <option disabled selected>Select User</option>
                                             @foreach($all_user as $users)
                                                 <option value="{{$users->id}}">
                                                     {{$users->name}}

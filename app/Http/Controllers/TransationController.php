@@ -46,6 +46,8 @@ class TransationController extends Controller
 
 
 
+
+
         }
         else {
             $current_month=  transation::where('month_id',date('m'))->get();

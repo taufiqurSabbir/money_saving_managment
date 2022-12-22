@@ -16,15 +16,18 @@
 @section('link2',route('all.user'))
 @section('icon2','bi bi-person-check')
 
+
 @section('collapsed3','collapsed');
-@section('sidebar_name3','Add Years')
+@section('sidebar_name3','Transaction')
 @section('link3','Dashboard')
-@section('icon3','bi bi-calendar-check')
+@section('icon3','bi bi-cash-coin')
 
 @section('collapsed4','collapsed');
-@section('sidebar_name4','Transaction')
+@section('sidebar_name4','Loan')
 @section('link4','Dashboard')
-@section('icon4','bi bi-cash-coin')
+@section('icon4','bi bi-coin')
+
+
 
 @section('collapsed5','collapsed');
 @section('sidebar_name5','Notice')

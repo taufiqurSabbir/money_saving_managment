@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin;
 use App\Http\Controllers\cashier;
+use App\Http\Controllers\LoanRequestController;
 use App\Http\Controllers\login_res;
 use App\Http\Controllers\money_saver;
 use App\Http\Controllers\TransationController;
@@ -49,6 +50,8 @@ Route::post('/transaction',[TransationController::class,'transaction'])->name('s
 Route::get('money-saver/dashboard', [money_saver::class, 'index'])->name('money_saver.dashboard');
 
 Route::get('cashier/dashboard', [cashier::class,'index'])->name('cashier.dashboard');
+
+Route::get('loan', [LoanRequestController::class,'index'])->name('loan');
 
 
 
