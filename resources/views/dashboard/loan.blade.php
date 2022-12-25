@@ -66,7 +66,7 @@
                 <div class="col-12">
                     <div class="card">
 
-                        <form class="card-body">
+
                             <h5 class="card-title">All Loan</h5>
 
 
@@ -125,9 +125,9 @@
                             @endif
                             @if(session('failed'))
                                 <span class="alert alert-danger">{{session('failed')}}</span>
-                        @endif
+                            @endif
 
-                            <form action="{{route('submit.loan')}}" method="post" class="input-group">
+                            <form action="{{route('submit.loan')}}" method="POST" class="input-group">
                                 {{csrf_field()}}
                                 <div class="row">
                                     <div class="col-sm">
@@ -154,9 +154,95 @@
 
                                 </div>
 
-                            </form>
 
 
+                        </form>
+
+                        <div class="myloan">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">phone</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Reason</th>
+                                        <th scope="col">Need Date</th>
+                                        <th scope="col">Paid date</th>
+                                        <th scope="col">Status</th>
+                                        @if($user_data->role =='admin' or $user_data->role == 'cashier')
+                                            <th scope="col">Action</th>
+                                        @endif
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    @foreach($loan_request as $loans)
+                                        @php
+                                            $users = \App\Models\User::where('id',$loans->user_id)->first()
+
+                                        @endphp
+                                        <tr>
+                                            <th><span>
+                                                <img src="{{asset('image/profile_picture/'. $users->profile_picture)}}" style="width:50px; height:50px; border-radius:50%" alt="">
+                                                 {{$users->name}}
+                                            </span>
+
+                                            </th>
+                                            <td>
+
+                                                {{$users->phone}}
+                                            </td>
+                                                @php
+
+                                                    $need_date = Illuminate\Support\Carbon::parse($loans->need_date);
+                                                    $paid_date = Illuminate\Support\Carbon::parse($loans->paid_date);
+
+                                                @endphp
+
+
+
+
+                                            <td>{{$loans->amount}}</td>
+                                            <td>{{$loans->reason}}</td>
+                                            <td>{{$need_date->isoFormat('Do MMM YY')}}</td>
+                                            <td>{{$paid_date->isoFormat('Do MMM YY')}}</td>
+                                            <td>
+
+                                                @if( $loans->status =='pending')
+                                                    <span class="badge bg-danger">Pending</span>
+                                                @elseif($loans->status =='approve')
+                                                    <span class="badge bg-success">Paid</span>
+                                                @endif
+
+
+                                            </td>
+
+
+
+                                                <td>
+                                                    <a class="btn btn-danger" href="{{route('delete_tran',$loans->id)}}">Delete</a>
+                                                    @if($user_data->role =='admin' or $user_data->role == 'cashier')
+                                          <span>
+                                                  @if ( $loans->status =='pending')
+                                                  <a class="btn btn-success" href="{{route('due',$loans->id)}}">Approve</a>
+                                                  <a class="btn btn-danger" href="{{route('paid',$loans->id)}}">Reject</a>
+                                              @endif
+                                              {{--                                              <a class="btn btn-success" href="">Approve</a>--}}
+                                              {{--                                              <a class="btn btn-warning" href="">Pending</a>--}}
+                                              {{--                                              <a class="btn btn-danger" href="">Reject</a>--}}
+                                          </span>
+                                                    @endif
+                                                </td>
+
+                                        </tr>
+
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
 
                         </div>
