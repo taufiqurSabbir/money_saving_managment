@@ -12,7 +12,8 @@ class NoticsController extends Controller
    public function index()
    {
        $user_data = User::find(Auth::id());
-       $notice = Notics::all();
+       $notice = Notics::orderBy('id', 'DESC')->get();
+
 
 
        return view('dashboard.notic', compact('user_data','notice'));

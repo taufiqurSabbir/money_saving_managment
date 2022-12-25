@@ -153,7 +153,21 @@
                                                 </style>
                                                 <br>
                                                 <a href="{{route('single.notice',$notices->id)}}"><h3>{{$notices->title}}</h3>  </a>
-                                                <span>Notice By: <b>{{$notice_user->name}}</b> </span>
+                                                        <div class="row">
+                                                            @php
+                                                                $push_date = Illuminate\Support\Carbon::parse($notice_user->created_at);
+
+                                                            @endphp
+
+                                                            {{dd($push_date)}}
+
+                                                            <div class="col-sm">
+                                                                <span>Notice By: <b>{{$notice_user->name}}</b> </span>
+
+                                                                <span>Publish at: <b>{{$notice_user->name}}</b> </span>
+                                                            </div>
+
+                                                        </div>
                                                 <br>
                                             </div>
                                         </div>
