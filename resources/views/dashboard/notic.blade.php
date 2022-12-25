@@ -159,12 +159,12 @@
 
                                                             @endphp
 
-                                                            {{dd($push_date)}}
+
 
                                                             <div class="col-sm">
                                                                 <span>Notice By: <b>{{$notice_user->name}}</b> </span>
 
-                                                                <span>Publish at: <b>{{$notice_user->name}}</b> </span>
+                                                                <span>Publish at: <b>{{$push_date->isoFormat('Do MMM YY')}}</b> </span>
                                                             </div>
 
                                                         </div>
