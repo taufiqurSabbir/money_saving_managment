@@ -55,6 +55,10 @@ Route::get('loan', [LoanRequestController::class,'index'])->name('loan');
 
 Route::post('loan', [LoanRequestController::class,'submit_loan'])->name('submit.loan');
 
+Route::get('loan/approve/{id}', [LoanRequestController::class,'approve'])->name('loan.approve');
+Route::get('loan/reject/{id}', [LoanRequestController::class,'reject'])->name('loan.reject');
+Route::get('loan/delete/{id}', [LoanRequestController::class,'delete'])->name('loan.delete');
+
 
 
 

@@ -53,6 +53,26 @@ class LoanRequestController extends Controller
         $user->update([
             'status' =>'reject'
         ]);
-        return back()->with('success',$user->name.' pending successfully');
+        return back()->with('success',' Make rejected successfully');
     }
+
+    public function approve($id){
+        $user=  LoanRequest::find($id);
+
+
+//        dd($user->user_id);
+//        die();
+//        $user->update([
+//            'status' =>'approve'
+//        ]);
+
+        return back()->with('success',' Approved successfully');
+    }
+
+    public function delete($id){
+        LoanRequest::destroy($id);
+
+        return back()->with('success',' Delete successfully');
+    }
+
 }

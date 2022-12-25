@@ -210,9 +210,11 @@
                                             <td>
 
                                                 @if( $loans->status =='pending')
-                                                    <span class="badge bg-danger">Pending</span>
+                                                    <span class="badge bg-warning">Pending</span>
                                                 @elseif($loans->status =='approve')
                                                     <span class="badge bg-success">Paid</span>
+                                                @elseif($loans->status =='reject')
+                                                    <span class="badge bg-danger">Rejected</span>
                                                 @endif
 
 
@@ -221,12 +223,12 @@
 
 
                                                 <td>
-                                                    <a class="btn btn-danger" href="{{route('delete_tran',$loans->id)}}">Delete</a>
+                                                    <a class="btn btn-danger" href="{{route('loan.delete',$loans->id)}}">Delete</a>
                                                     @if($user_data->role =='admin' or $user_data->role == 'cashier')
                                           <span>
                                                   @if ( $loans->status =='pending')
-                                                  <a class="btn btn-success" href="{{route('due',$loans->id)}}">Approve</a>
-                                                  <a class="btn btn-danger" href="{{route('paid',$loans->id)}}">Reject</a>
+                                                  <a class="btn btn-success" href="{{route('loan.approve',$loans->id)}}">Approve</a>
+                                                  <a class="btn btn-danger" href="{{route('loan.reject',$loans->id)}}">Reject</a>
                                               @endif
                                               {{--                                              <a class="btn btn-success" href="">Approve</a>--}}
                                               {{--                                              <a class="btn btn-warning" href="">Pending</a>--}}
