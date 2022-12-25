@@ -39,4 +39,10 @@ class NoticsController extends Controller
 
         return back()->with('success',' Request added successfully');
     }
+
+    public function single_notice($id){
+        $user_data = User::find(Auth::id());
+        $notice = Notics::where('id', $id)->first();
+        return view('dashboard.notice_single', compact('user_data','notice'));
+    }
 }

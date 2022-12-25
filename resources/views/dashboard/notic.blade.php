@@ -108,37 +108,61 @@
 
 
                         <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    @if($user_data->role =='admin' or $user_data->role == 'cashier')
-                                        <th scope="col">Action</th>
-                                    @endif
-                                </tr>
-                                </thead>
-                                <tbody>
+                            @foreach($notice as $notices)
+                                @php
+                                $notice_user = \App\Models\User::where('id',$notices->user_id)->first();
+                                @endphp
+                                <a href="{{route('single.notice',$notices->id)}}">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <div class="bd-callout bd-callout-primary">
+                                                <style>
+                                                    .bd-callout {
+                                                        padding: 1.25rem;
+                                                        margin-top: 1.25rem;
+                                                        margin-bottom: 1.25rem;
+                                                        border: 1px solid #eee;
+                                                        border-left-width: .25rem;
+                                                        border-radius: .25rem
+                                                    }
+
+                                                    .bd-callout h4 {
+                                                        margin-top: 0;
+                                                        margin-bottom: .25rem
+                                                    }
+
+                                                    .bd-callout p:last-child {
+                                                        margin-bottom: 0
+                                                    }
+
+                                                    .bd-callout code {
+                                                        border-radius: .25rem
+                                                    }
+
+                                                    .bd-callout+.bd-callout {
+                                                        margin-top: -.25rem
+                                                    }
+
+
+                                                    .bd-callout-primary{
+                                                        border-left-color: #22b209
+                                                    }
 
 
 
+                                                </style>
+                                                <br>
+                                                <a href="{{route('single.notice',$notices->id)}}"><h3>{{$notices->title}}</h3>  </a>
+                                                <span>Notice By: <b>{{$notice_user->name}}</b> </span>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
 
-
-
-                                @foreach($notice as $notices)
-                                    <tr>
-                                        <td>{{$notices->title}}</td>
-                                        @if($user_data->role =='admin' or $user_data->role == 'cashier')
-                                        <td>
-                                            <a class="btn btn-danger" href="">Delete</a>
-                                            <a class="btn btn-primary" href="">Edit</a>
-                                        </td>
-                                        @endif
-                                    </tr>
+                                </a>
                                 @endforeach
-
-                                </tbody>
-                            </table>
                         </div>
+
 
 
 

@@ -63,6 +63,7 @@ Route::get('loan/delete/{id}', [LoanRequestController::class,'delete'])->name('l
 
 Route::get('notice',[NoticsController::class,'index'])->name('notice');
 Route::post('notice',[NoticsController::class,'submit'])->name('submit.notice');
+Route::get('notice/{id}',[NoticsController::class,'single_notice'])->name('single.notice');
 
 
 
