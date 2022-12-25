@@ -5,6 +5,7 @@ use App\Http\Controllers\cashier;
 use App\Http\Controllers\LoanRequestController;
 use App\Http\Controllers\login_res;
 use App\Http\Controllers\money_saver;
+use App\Http\Controllers\NoticsController;
 use App\Http\Controllers\TransationController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +59,10 @@ Route::post('loan', [LoanRequestController::class,'submit_loan'])->name('submit.
 Route::get('loan/approve/{id}', [LoanRequestController::class,'approve'])->name('loan.approve');
 Route::get('loan/reject/{id}', [LoanRequestController::class,'reject'])->name('loan.reject');
 Route::get('loan/delete/{id}', [LoanRequestController::class,'delete'])->name('loan.delete');
+
+
+Route::get('notice',[NoticsController::class,'index'])->name('notice');
+Route::post('notice',[NoticsController::class,'submit'])->name('submit.notice');
 
 
 

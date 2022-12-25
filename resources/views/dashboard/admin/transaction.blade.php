@@ -94,7 +94,7 @@
                                                 <div class="modal-body">
                                                    <h5>Add User Amount</h5>
                                                     <hr>
-                                                    <form action="">
+
                                                         <span>Select User</span>
                                                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="user">
                                                             @foreach($all_user as $users)

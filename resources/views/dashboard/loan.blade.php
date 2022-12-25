@@ -223,8 +223,9 @@
 
 
                                                 <td>
-                                                    <a class="btn btn-danger" href="{{route('loan.delete',$loans->id)}}">Delete</a>
+
                                                     @if($user_data->role =='admin' or $user_data->role == 'cashier')
+                                                        <a class="btn btn-danger" href="{{route('loan.delete',$loans->id)}}">Delete</a>
                                           <span>
                                                   @if ( $loans->status =='pending')
                                                   <a class="btn btn-success" href="{{route('loan.approve',$loans->id)}}">Approve</a>
