@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin;
+use App\Http\Controllers\AssetsController;
 use App\Http\Controllers\cashier;
 use App\Http\Controllers\LoanRequestController;
 use App\Http\Controllers\login_res;
@@ -67,5 +68,6 @@ Route::get('notice/{id}',[NoticsController::class,'single_notice'])->name('singl
 
 
 
-
-
+Route::get('asset', [AssetsController::class,'index'])->name('asset');
+Route::get('asset/delete/{id}', [AssetsController::class,'delete'])->name('asset.delete');
+Route::post('asset',[AssetsController::class,'submit'])->name('asset.add');

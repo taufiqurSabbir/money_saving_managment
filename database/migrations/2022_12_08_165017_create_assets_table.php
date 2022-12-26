@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('buy_amount');
             $table->string('return_amount');
+            $table->string('profit');
             $table->string('return_type')->comment('Monthly,yearly');
             $table->date('from_date');
             $table->date('to_date');
