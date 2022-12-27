@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assets;
 use App\Models\LoanRequest;
 use App\Models\Notics;
+use App\Models\profits;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,12 +16,13 @@ class AssetsController extends Controller
     {
         $user_data = User::find(Auth::id());
 
-        $asset = Assets::all();
+        $asset = Assets::orderBy('id', 'DESC')->get();
         $asset_count = Assets::all()->count();
+        $added_profit = profits::sum('amount');
         $asset_profit = Assets::sum('profit');
 
 
-        return view('dashboard.asset', compact('user_data','asset','asset_count','asset_profit'));
+        return view('dashboard.asset', compact('user_data','asset','asset_count','asset_profit','added_profit'));
     }
 
 
@@ -44,6 +46,8 @@ class AssetsController extends Controller
                 'from_date'=>$request->from_date,
                 'to_date'=>$request->	to_date,
             ]);
+
+
 
         return back()->with('success',' Asset added successfully');
     }

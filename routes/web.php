@@ -3,8 +3,10 @@
 use App\Http\Controllers\admin;
 use App\Http\Controllers\AssetsController;
 use App\Http\Controllers\cashier;
+use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\LoanRequestController;
 use App\Http\Controllers\login_res;
+use App\Http\Controllers\MemberCancleController;
 use App\Http\Controllers\money_saver;
 use App\Http\Controllers\NoticsController;
 use App\Http\Controllers\TransationController;
@@ -71,3 +73,10 @@ Route::get('notice/{id}',[NoticsController::class,'single_notice'])->name('singl
 Route::get('asset', [AssetsController::class,'index'])->name('asset');
 Route::get('asset/delete/{id}', [AssetsController::class,'delete'])->name('asset.delete');
 Route::post('asset',[AssetsController::class,'submit'])->name('asset.add');
+
+
+Route::get('expense',[ExpensesController::class,'index'])->name('expense');
+Route::post('expense',[ExpensesController::class,'submit'])->name('submit.expense');
+Route::get('expense/delete/{id}', [ExpensesController::class,'delete'])->name('expense.delete');
+
+Route::get('cancel/request', [MemberCancleController::class,'index'])->name('member_cancel');

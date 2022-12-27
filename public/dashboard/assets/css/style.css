@@ -834,9 +834,9 @@ h6 {
   flex-grow: 0;
 }
 
-.dashboard .sales-card .card-icon {
-  color: #4154f1;
-  background: #f6f6fe;
+.dashboard .expense_page-card .card-icon {
+    color: #782eeb;
+    background: #f6f6fe;
 }
 
 .dashboard .revenue-card .card-icon {

@@ -76,7 +76,7 @@
                                     <i class="bi bi-cash-coin"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>453৳</h6>
+                                    <h6>{{$added_profit}}</h6>
 
                                 </div>
                             </div>
@@ -173,7 +173,7 @@
                                     <div class="col-sm">
                                         <span>Return Type</span>
                                         <select class="form-select" aria-label="Default select example" name="return_type">
-                                            <option disabled  selected>Select Month</option>
+                                            <option disabled  selected>Select Type</option>
                                                 <option value="onetime">Onetime</option>
                                                 <option value="monthly">Monthly</option>
                                                 <option value="yearly">Yearly</option>
@@ -241,11 +241,34 @@
                                         <td>{{$assets->profit }}৳</td>
                                         <td>{{$from_date->isoFormat('Do MMM YY')}}</td>
                                         <td>{{$to_date->isoFormat('Do MMM YY')}}</td>
+
+
+
                                         @if($user_data->role =='admin' or $user_data->role == 'cashier')
 
+
                                             <td>
+
                                           <span>
                                               @if($to_date->isPast())
+
+                                                      @php
+                                                          $p_check =  \App\Models\profits::where('asset_id',$assets->id)->get();
+
+                                                                if ( $p_check->isEmpty()){
+                                                                    \App\Models\profits::create([
+                                                                        'amount' =>$assets->profit,
+                                                                        'asset_id' =>$assets->id,
+                                                                        'added_date' =>$assets->to_date,
+                                                                         ]);
+                                                                                                 }
+                                                  @endphp
+
+                                                  <script>
+
+                                              </script>
+
+
 
                                               @else
                                                   <a class="btn btn-danger" href="{{route('asset.delete',$assets->id)}}">Delete</a>

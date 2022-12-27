@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('profits', function (Blueprint $table) {
             $table->id();
+            $table->string('amount');
+            $table->foreignId('asset_id')->constrained();
+            $table->date('added_date');
             $table->timestamps();
         });
     }

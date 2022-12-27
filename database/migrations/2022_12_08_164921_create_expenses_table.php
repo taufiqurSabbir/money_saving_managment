@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->string('expense_reason');
+            $table->string('amount');
             $table->string('details');
             $table->foreignId('expense_by')->constrained('users');
             $table->date('expense_date');
