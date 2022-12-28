@@ -79,4 +79,9 @@ Route::get('expense',[ExpensesController::class,'index'])->name('expense');
 Route::post('expense',[ExpensesController::class,'submit'])->name('submit.expense');
 Route::get('expense/delete/{id}', [ExpensesController::class,'delete'])->name('expense.delete');
 
+Route::get('cancel/request/approve/{id}', [MemberCancleController::class,'approve_member'])->name('approve.member_cancel');
+Route::get('cancel/request/pending/{id}', [MemberCancleController::class,'pending_member'])->name('pending.member_cancel');
+Route::get('cancel/request/reject/{id}', [MemberCancleController::class,'reject_member'])->name('reject.member_cancel');
+Route::get('cancel/request/delete/{id}', [MemberCancleController::class,'delete_member'])->name('delete.member_cancel');
 Route::get('cancel/request', [MemberCancleController::class,'index'])->name('member_cancel');
+Route::post('cancel/request', [MemberCancleController::class,'submit'])->name('submit.member_cancel');

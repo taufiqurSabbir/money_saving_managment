@@ -80,27 +80,17 @@
 
 
 
-                            <form action="{{route('submit.expense')}}" class="input-group" method="post">
+                            <form action="{{route('submit.member_cancel')}}" class="input-group" method="post">
                                 {{csrf_field()}}
                                 <div class="row">
                                     <div class="col-sm">
-                                        <span>Expense Reason</span>
+                                        <span>Title</span>
+                                        <input type="text" class="form-control" name="title">
+                                    </div>
+
+                                    <div class="col-sm">
+                                        <span>Reason</span>
                                         <input type="text" class="form-control" name="reason">
-                                    </div>
-
-                                    <div class="col-sm">
-                                        <span>Expense Amount</span>
-                                        <input type="text" class="form-control" name="amount">
-                                    </div>
-
-                                    <div class="col-sm">
-                                        <span>Details</span>
-                                        <input type="text" class="form-control" name="details">
-                                    </div>
-
-                                    <div class="col-sm">
-                                        <span>Expense Date</span>
-                                        <input type="date" class="form-control" name="date">
                                     </div>
 
                                     <div class="col-sm">
@@ -115,34 +105,62 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Expense Reason</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Details</th>
-                                    <th scope="col">Expense By</th>
-                                    <th scope="col">Expense Date</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Reason</th>
+                                    <th scope="col">Saving amount</th>
+                                    <th scope="col">status</th>
+                                    @if($user_data->role =='admin' or $user_data->role == 'cashier')
                                     <th scope="col">Action</th>
+                                        @endif
                                 </tr>
                                 </thead>
                                 <tbody>
 
 
 
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
 
-                                        <td></td>
-                                        <td></td>
+                                    @foreach($self_request as $member_re)
+
+                                    <tr>
+                                        <td>{{$member_re->title}}</td>
+                                        <td>{{$member_re->reason}}</td>
+                                        <td>{{$user_paid_amount}}৳</td>
+                                        <td>
+                                            @if( $member_re->status =='pending')
+                                                <span class="badge bg-warning">Pending</span>
+                                            @elseif($member_re->status =='rejected')
+                                                <span class="badge bg-danger">Rejected</span>
+                                            @elseif($member_re->status =='approve')
+                                                <span class="badge bg-success">Approve</span>
+                                            @endif
+
+                                        </td>
+
                                             <td>
                                           <span>
 
-                                                <a class="btn btn-danger" href="">Delete</a>
+                                                <a class="btn btn-danger" href="{{route('delete.member_cancel',$member_re->id)}}">Delete</a>
+
+                                                @if($user_data->role =='admin' or $user_data->role == 'cashier')
+                                                  @if ( $member_re->status =='pending')
+                                                      <a class="btn btn-success" href="{{route('approve.member_cancel',$member_re->id)}}">Approve</a>
+                                                      <a class="btn btn-danger" href="{{route('reject.member_cancel',$member_re->id)}}">Reject</a>
+                                              @elseif ($member_re->status =='approve')
+                                                  <a class="btn btn-warning" href="{{route('pending.member_cancel',$member_re->id)}}">Pending</a>
+                                                  <a class="btn btn-danger" href="{{route('paid',$member_re->id)}}">Reject</a>
+                                                  @elseif ($member_re->status =='rejected')
+                                                      <a class="btn btn-success" href="{{route('paid',$member_re->id)}}">Approve</a>
+                                                      <a class="btn btn-warning" href="{{route('paid',$member_re->id)}}">Pending</a>
+
+
+                                              @endif
+                                              @endif
 
                                           </span>
                                             </td>
 
                                     </tr>
+                                        @endforeach
 
 
 

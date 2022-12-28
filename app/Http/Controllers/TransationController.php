@@ -24,24 +24,24 @@ class TransationController extends Controller
         {
 
             if(isset($request->s_month)){
-                $current_month=  transation::where('month_id',$request->s_month)->get();
+                $current_month=  transation::where('month_id',$request->s_month)->where('status','Due')->orWhere('status', 'paid')->get();
             }
-            if(isset($request->s_month) && isset($request->s_year)){
-                $current_month=  transation::where('month_id',$request->s_month)->where('year_id', $request->s_year)->get();
+            if(isset($request->s_month) ){
+                $current_month=  transation::where('month_id',$request->s_month)->where('status','Due')->orWhere('status', 'paid')->get();
             }
             if(isset($request->s_year)){
-                $current_month=  transation::where('year_id', $request->s_year)->get();
+                $current_month=  transation::where('year_id', $request->s_year)->where('status','Due')->orWhere('status', 'paid')->get();
             }
             if(isset($request->s_status)){
-                $current_month=  transation::where('status', $request->s_status)->get();
+                $current_month=  transation::where('status', $request->s_status)->where('status','Due')->orWhere('status', 'paid')->get();
             }
 
             if(isset($request->s_type)){
-                $current_month=  transation::where('type', $request->s_type)->get();
+                $current_month=  transation::where('type', $request->s_type)->where('status','Due')->orWhere('status', 'paid')->get();
             }
 
             if(isset($request->s_user)){
-                $current_month=  transation::where('user_id', $request->s_user)->get();
+                $current_month=  transation::where('user_id', $request->s_user)->where('status','Due')->orWhere('status', 'paid')->get();
             }
 
 
@@ -50,8 +50,9 @@ class TransationController extends Controller
 
         }
         else {
-            $current_month=  transation::where('month_id',date('m'))->get();
+            $current_month=  transation::where('month_id',date('m'))->where('status','Due')->orWhere('status', 'paid')->get();
         }
+
 
 
 
