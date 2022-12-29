@@ -78,6 +78,12 @@ class admin extends Controller
         return back()->with('success',' User Role Updated');
     }
 
+    public function user_profile(){
+        $user_data = User::find(Auth::id());
+
+        return view('user_profile',compact('user_data'));
+    }
+
 
 
 

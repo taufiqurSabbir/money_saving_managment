@@ -85,3 +85,5 @@ Route::get('cancel/request/reject/{id}', [MemberCancleController::class,'reject_
 Route::get('cancel/request/delete/{id}', [MemberCancleController::class,'delete_member'])->name('delete.member_cancel');
 Route::get('cancel/request', [MemberCancleController::class,'index'])->name('member_cancel');
 Route::post('cancel/request', [MemberCancleController::class,'submit'])->name('submit.member_cancel');
+
+Route::get('user/profile',[admin::class,'user_profile'])->name('user.profile');
