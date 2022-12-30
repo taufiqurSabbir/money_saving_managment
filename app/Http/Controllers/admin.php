@@ -90,7 +90,16 @@ class admin extends Controller
             'fullName' =>'required',
             'profile_image'=>'mimes:jpg,bmp,png',
         ]);
-      dd( $request->all());
+
+        $image_name = rand().'.'.$request->profile_image->extension();
+        request('profile_image') ->move('image/profile_picture',$image_name);
+
+      User::find(Auth::id())->update([
+          'name' =>$request->fullName,
+          'profile_picture' =>$image_name,
+
+      ]);
+        return back()->with('success',' Update Info successful');
     }
 
 
