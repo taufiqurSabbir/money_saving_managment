@@ -87,3 +87,5 @@ Route::get('cancel/request', [MemberCancleController::class,'index'])->name('mem
 Route::post('cancel/request', [MemberCancleController::class,'submit'])->name('submit.member_cancel');
 
 Route::get('user/profile',[admin::class,'user_profile'])->name('user.profile');
+
+Route::post('update/profile',[admin::class,'update_profile'])->name('update.profile');

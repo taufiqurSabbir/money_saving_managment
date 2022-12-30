@@ -84,6 +84,15 @@ class admin extends Controller
         return view('user_profile',compact('user_data'));
     }
 
+    public function update_profile(Request $request){
+
+        $request->validate([
+            'fullName' =>'required',
+            'profile_image'=>'mimes:jpg,bmp,png',
+        ]);
+      dd( $request->all());
+    }
+
 
 
 

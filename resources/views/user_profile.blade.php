@@ -85,6 +85,13 @@
 
                                 <div class="card">
                                     <div class="card-body pt-3">
+                                        @include('error')
+                                        @if(session('success'))
+                                            <span class="alert alert-success">{{session('success')}}</span>
+                                        @endif
+                                        @if(session('failed'))
+                                            <span class="alert alert-danger">{{session('failed')}}</span>
+                                    @endif
                                         <!-- Bordered Tabs -->
                                         <ul class="nav nav-tabs nav-tabs-bordered">
 
@@ -130,18 +137,18 @@
                                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                                 <!-- Profile Edit Form -->
-                                                <form method="post" action="" enctype="multipart/form-data" >
+                                                <form method="post" action="{{route('update.profile')}}" enctype="multipart/form-data" >
                                                         {{csrf_field()}}
                                                     <div class="row mb-3">
                                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                                         <div class="col-md-8 col-lg-9">
                                                             <div class="avatar-upload">
                                                                 <div class="avatar-edit">
-                                                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" name="profile_image" />
                                                                     <label for="imageUpload"></label>
                                                                 </div>
                                                                 <div class="avatar-preview">
-                                                                    <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                                                    <div id="imagePreview" style="background-image: url({{asset('image/profile_picture/'.$user_data->profile_picture)}});">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -154,7 +161,7 @@
                                                     <div class="row mb-3">
                                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                                                         <div class="col-md-8 col-lg-9">
-                                                            <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                                                            <input name="fullName" type="text" class="form-control" id="fullName" value="{{$user_data->name}}">
                                                         </div>
                                                     </div>
 
@@ -162,9 +169,16 @@
                                                     <div class="row mb-3">
                                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                                         <div class="col-md-8 col-lg-9">
-                                                            <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
+                                                            <input name="phone" type="text" disabled class="form-control" id="company" value="{{$user_data->phone}}">
                                                         </div>
                                                     </div>
+
+                                            <div class="row mb-3">
+                                                <div class="text-center">
+
+                                                    <input type="submit" value="Update Information" class="btn btn-success">
+                                                </div>
+                                            </div>
                                                 </form><!-- End Profile Edit Form -->
 
                                             </div>
