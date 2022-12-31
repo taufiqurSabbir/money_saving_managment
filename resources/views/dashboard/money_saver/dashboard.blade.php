@@ -96,7 +96,7 @@
                     </div>
                 </div><!-- End Sales Card -->
 
-                <!-- Revenue Card -->
+                <!-- Your Total -->
                 <div class="col-xxl-4 col-md-6">
                     <div class="card info-card revenue-card">
 
@@ -119,7 +119,7 @@
                         </div>
 
                     </div>
-                </div><!-- End Revenue Card -->
+                </div><!-- End Your Total -->
 
 
                 <div class="col-xxl-4 col-md-6">

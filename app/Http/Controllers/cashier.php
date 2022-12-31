@@ -11,7 +11,7 @@ class cashier extends Controller
 {
    public function index(){
        $total_collect = transation::where('status','paid')->sum('amount');
-       dd($total_collect);
+
 
        $user_data = User::find(Auth::id());
        return view('dashboard.cashier.dashboard',compact('user_data'));

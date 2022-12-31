@@ -3,7 +3,7 @@
 @section('user_name',$user_data->name)
 @section('phone',$user_data->phone)
 @section('profile_image',$user_data->profile_picture)
-
+@if($user_data->user_status =='Approved'):
 @section('collapsed1','collapsed');
 @section('sidebar_name1','Dashboard')
 @section('link1',route('admin.dashboard'))
@@ -19,39 +19,39 @@
 
 @section('collapsed3','collapsed');
 @section('sidebar_name3','Transaction')
-@section('link3','Dashboard')
+@section('link3',route('transaction'))
 @section('icon3','bi bi-cash-coin')
 
 @section('collapsed4','');
 @section('sidebar_name4','Loan')
-@section('link4','Dashboard')
+@section('link4',route('loan'))
 @section('icon4','bi bi-coin')
 
 
 
 @section('collapsed5','collapsed');
 @section('sidebar_name5','Notice')
-@section('link5','Dashboard')
+@section('link5',route('notice'))
 @section('icon5','bi bi-bell')
 
 @section('collapsed6','collapsed');
 @section('sidebar_name6','Asset')
-@section('link6','Dashboard')
+@section('link6',route('asset'))
 @section('icon6','bi bi-plus-circle')
 
 @section('collapsed7','collapsed');
 @section('sidebar_name7','Expense')
-@section('link7','Dashboard')
+@section('link7',route('expense'))
 @section('icon7','bi bi-dash-circle')
 
 @section('collapsed8','collapsed');
 @section('sidebar_name8','Member Cancel Request')
-@section('link8','Dashboard')
+@section('link8',route('member_cancel'))
 @section('icon8','bi bi-person-dash')
 
 @section('collapsed9','collapsed');
 @section('sidebar_name9','Logout')
-@section('link9','Dashboard')
+@section('link9',route('logout'))
 @section('icon9','bi bi-box-arrow-left')
 
 
@@ -263,3 +263,47 @@
         </div>
 
 @endsection
+
+@elseif($user_data->user_status =='pending')
+@section('content')
+
+    <div class="row">
+
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+            <div class="row">
+
+                <h4 style="text-align:center">Your Account is <b style="color:darkred">pending</b> </h4>
+                <h5 style="text-align:center">We are checking your Information. <br> We'll inform you soon</h5>
+
+                <img src="{{asset('image/frontend/98723-search-users.gif')}}" alt="">
+
+
+
+            </div>
+        </div>
+    </div>
+@endsection
+
+@elseif($user_data->user_status =='Rejected')
+@section('content')
+
+    <div class="row">
+
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+            <div class="row">
+                <h4 style="text-align:center">Your Account is <b style="color:darkred">Rejected</b> </h4>
+                <h5 style="text-align:center">We are sorry to inform. <br> You unable to became our member</h5>
+
+                <img src="{{asset('image/frontend/80164-reject-document-files.gif')}}" style="height:50%; width:70%; margin: 0 auto" alt="">
+            </div>
+        </div>
+    </div>
+@endsection
+
+
+
+@endif

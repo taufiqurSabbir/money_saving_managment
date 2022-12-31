@@ -77,20 +77,6 @@
             </a>
         </li><!-- End Blank Page Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link @yield('collapsed10')" href="@yield('link10')">
-                <i class="@yield('icon10')"></i>
-                <span>@yield('sidebar_name10')</span>
-            </a>
-        </li><!-- End Blank Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link @yield('collapsed11')" href="@yield('link11')">
-                <i class="@yield('icon11')"></i>
-                <span>@yield('sidebar_name11')</span>
-            </a>
-        </li><!-- End Blank Page Nav -->
-
     </ul>
 
 </aside><!-- End Sidebar-->
